@@ -6,6 +6,7 @@ use anyhow::{Context, Result, anyhow, bail};
 use hidapi::{HidApi, HidDevice};
 use std::sync::Mutex;
 use std::time::Duration;
+use std::thread;
 
 // ============================================================================
 // Constants
@@ -395,6 +396,7 @@ impl AulaF75 {
         payload[SEND_PAYLOAD_LENGTH - 1] = 165;
         let tx = Self::frame_packet(&payload);
         self.hid_send(&tx)?;
+        thread::sleep(Duration::from_millis(100));
         Ok(())
     }
 

@@ -69,9 +69,6 @@ fn main() -> Result<()> {
         }
     };
 
-    println!("Resetting device...");
-    let _ = device.send_reset();
-
     println!("Writing keymap...");
     device.set_keys(KeyLayer::Normal, &default_keys)?;
 
